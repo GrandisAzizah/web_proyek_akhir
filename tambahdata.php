@@ -26,46 +26,46 @@ if (isset($_POST["submit"])) {
 
 <body>
     <h1>Tambah Data</h1>
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
         <!-- INPUT MEREK -->
-        <label for="merk">Merek: <br>
-            <input type="text" name="merk" placeholder="Merek Laptop" required><br><br>
-        </label>
+        <label for="merk">Merek: <br></label>
+        <input type="text" name="merk" id="merek" required><br><br>
+
 
         <!-- INPUT GAMBAR -->
-        <label for="gambar">Gambar:<br>
-            <input type="url" name="gambar"><br><br>
-        </label>
+        <label for="gambar">Gambar:<br></label>
+        <input type="file" name="gambar" id="gambar"><br><br>
+
 
         <!-- INPUT CPU -->
-        <label for="cpu">CPU:<br>
-            <input type="text" name="cpu"><br><br>
-        </label>
+        <label for="cpu">CPU:<br></label>
+        <input type="text" name="cpu" id="cpu"><br><br>
+
 
         <!-- INPUT GPU -->
-        <label for="gpu">GPU:<br>
-            <input type="text" name="gpu"><br><br>
-        </label>
+        <label for="gpu">GPU:<br></label>
+        <input type="text" name="gpu" id="gpu"><br><br>
+
 
         <!-- INPUT RAM -->
-        <label for="ram">RAM:<br>
-            <input type="text" name="ram"><br><br>
-        </label>
+        <label for="ram">RAM:<br></label>
+        <input type="text" name="ram" id="ram"><br><br>
+
 
         <!-- INPUT BATTERY -->
-        <label for="battery">Battery:<br>
-            <input type="text" name="battery"><br><br>
-        </label>
+        <label for="battery">Battery:<br></label>
+        <input type="text" name="battery" id="battery"><br><br>
+
 
         <!-- INPUT HARGA -->
-        <label for="harga">Harga:<br>
-            <input type="text" name="harga"><br><br>
-        </label>
+        <label for="harga">Harga:<br></label>
+        <input type="text" name="harga" id="harga"><br><br>
+
 
         <!-- INPUT LINK -->
-        <label for="link">Link Produk:<br>
-            <input type="text" name="link"><br><br>
-        </label>
+        <label for="link">Link Produk:<br></label>
+        <input type="text" name="link" id="link"><br><br>
+
 
         <!-- SUBMIT BUTTON -->
         <button type="submit" value="Kirim" name="submit">Kirim</button>
