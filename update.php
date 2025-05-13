@@ -41,49 +41,50 @@ if (isset($_POST["submit"])) {
 
 <body>
     <h1>Update Data</h1>
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
         <!-- id atau ID -->
         <input type="hidden" name="ID" value="<?= ($tm["ID"]); ?>">
+        <input type="hidden" name="gambarLama" value="<?= ($tm["gambar"]); ?>">
 
         <!-- INPUT MEREK -->
-        <label for="merk">merk:<br>
-            <input type="text" name="merk" placeholder="merk" required value="<?= ($tm["merk"]); ?>"><br><br>
-        </label>
+        <label for="merk">merk: </label><br>
+        <input type="text" name="merk" placeholder="merk" required value="<?= ($tm["merk"]); ?>"><br><br>
+
 
         <!-- INPUT GAMBAR -->
-        <label for="gambar">Gambar:<br>
-            <input type="text" name="gambar" placeholder="gambar" value="<?= ($tm["gambar"]); ?>"><br><br>
-        </label>
+        <label for="gambar">Gambar: </label><br>
+        <img src="img/<?= $tm['gambar']; ?> " width="50">
+        <input type="file" name="gambar"><br><br>
 
         <!-- INPUT CPU -->
-        <label for="cpu">CPU:<br>
-            <input type="text" name="cpu" value="<?= ($tm["CPU"]); ?>"><br><br>
-        </label>
+        <label for="cpu">CPU: </label><br>
+        <input type="text" name="cpu" value="<?= ($tm["CPU"]); ?>"><br><br>
+
 
         <!-- INPUT GPU -->
-        <label for="gpu">GPU:<br>
-            <input type="text" name="gpu" value="<?= ($tm["GPU"]); ?>"><br><br>
-        </label>
+        <label for="gpu">GPU: </label><br>
+        <input type="text" name="gpu" value="<?= ($tm["GPU"]); ?>"><br><br>
+
 
         <!-- INPUT RAM -->
-        <label for="ram">RAM:<br>
-            <input type="text" name="ram" value="<?= ($tm["RAM"]); ?>"><br><br>
-        </label>
+        <label for="ram">RAM: </label><br>
+        <input type="text" name="ram" value="<?= ($tm["RAM"]); ?>"><br><br>
+
 
         <!-- INPUT BATTERY -->
-        <label for="battery">Battery:<br>
-            <input type="text" name="battery" value="<?= ($tm["battery"]); ?>"><br><br>
-        </label>
+        <label for="battery">Battery: </label><br>
+        <input type="text" name="battery" value="<?= ($tm["battery"]); ?>"><br><br>
+
 
         <!-- INPUT HARGA -->
-        <label for="harga">Harga:<br>
-            <input type="text" name="harga" value="<?= ($tm["harga"]); ?>"><br><br>
-        </label>
+        <label for="harga">Harga: </label><br>
+        <input type="text" name="harga" value="<?= ($tm["harga"]); ?>"><br><br>
+
 
         <!-- INPUT LINK -->
-        <label for="link">Link Barang:<br>
-            <input type="text" name="link" value="<?= ($tm["link"]); ?>"><br><br>
-        </label>
+        <label for="link">Link Barang: </label><br>
+        <input type="text" name="link" value="<?= ($tm["link"]); ?>"><br><br>
+
 
         <!-- SUBMIT BUTTON -->
         <button type="submit" value="Update" name="submit">Update</button>
