@@ -38,7 +38,7 @@ $laptop = query("SELECT * FROM laptop");
                 <td><?= $i ?></td>
                 <td><?= $row['ID'] ?></td>
                 <td><?= $row['merk'] ?></td>
-                <td><img src="<?= $row['gambar'] ?>"></td>
+                <td><img src="<?= $row['gambar'] ?>" width="50"></td>
                 <td><?= $row['CPU'] ?></td>
                 <td><?= $row['GPU'] ?></td>
                 <td><?= $row['RAM'] ?></td>
