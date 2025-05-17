@@ -22,9 +22,9 @@ function tambah($data)
     // disimpan ke dalam variabel biar nanti di query gampang
     // diubah jadi $data["..."] karena elemen form di 'post' dan ditangkap oleh parameter $data
     $merk = htmlspecialchars($data["merk"]);
-    $cpu = htmlspecialchars($data["cpu"]);
-    $gpu = htmlspecialchars($data["gpu"]);
-    $ram = htmlspecialchars($data["ram"]);
+    $CPU = htmlspecialchars($data["CPU"]);
+    $GPU = htmlspecialchars($data["GPU"]);
+    $RAM = htmlspecialchars($data["RAM"]);
     $battery = htmlspecialchars($data["battery"]);
     $harga = htmlspecialchars($data["harga"]);
     $link = htmlspecialchars($data["link"]);
@@ -36,8 +36,8 @@ function tambah($data)
     }
 
     $query = "INSERT INTO laptop VALUES
-            ('', '$merk', '$gambar', '$cpu', 
-            '$gpu','$ram','$battery','$harga','$link')
+            ('', '$merk', '$gambar', '$CPU', 
+            '$GPU','$RAM','$battery','$harga','$link')
     ";
 
     mysqli_query($conn, $query);
@@ -81,7 +81,7 @@ function upload()
     $namaFileBaru = '.';
     $namaFileBaru = $ekstensiGambar;
     // masukkan ke direktori
-    move_uploaded_file($tmpName, 'uploads/' . $namaFileBaru);
+    move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
 
     return $namaFileBaru;
 }
@@ -98,9 +98,9 @@ function update($data)
     global $conn;
     $id = $data["ID"];
     $merk = htmlspecialchars($data["merk"]);
-    $cpu = htmlspecialchars($data["cpu"]);
-    $gpu = htmlspecialchars($data["gpu"]);
-    $ram = htmlspecialchars($data["ram"]);
+    $CPU = htmlspecialchars($data["CPU"]);
+    $GPU = htmlspecialchars($data["GPU"]);
+    $RAM = htmlspecialchars($data["RAM"]);
     $battery = htmlspecialchars($data["battery"]);
     $harga = htmlspecialchars($data["harga"]);
     $link = htmlspecialchars($data["link"]);
@@ -116,9 +116,9 @@ function update($data)
     $query = "UPDATE laptop SET
             merk = '$merk',
             gambar = '$gambar',
-            cpu = '$cpu',
-            gpu = '$gpu',
-            ram = '$ram',
+            CPU = '$CPU',
+            GPU = '$GPU',
+            RAM = '$RAM',
             battery = '$battery',
             harga = '$harga',
             link = '$link'
