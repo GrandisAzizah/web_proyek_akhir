@@ -1,7 +1,7 @@
 <?php
 // ini dibuat biar nanti di setiap menu gak perlu buat koneksi lagi dan tinggal panggil saja function nya
 // koneksi ke database ("namahost", "username", "password", "nama_database")
-$conn = mysqli_connect("localhost", "root", "", "laptop");
+$conn = mysqli_connect("localhost", "root", "", "paweb");
 
 // function query
 function query($query)
@@ -61,7 +61,7 @@ function upload()
 
     // cek apakah yang diunggah gambar atau bukan agar user hanya unggah gambar
     // yang bisa diunggah cuma bentuk jpg dll
-    $ekstensiGambarValid = ['jpg', 'png', 'jpeg'];
+    $ekstensiGambarValid = ['jpg', 'png', 'jpeg', 'webp'];
     // explode = memecah string menjadi array
     // explode->contoh nama gambar saat upload adalah gambar.jpg nanti diubah jadi ['gambar', 'jpg']
     $ekstensiGambar = explode('.', $namaFile);
@@ -70,7 +70,7 @@ function upload()
     // cek apakah format yang diunggah termasuk yang diperbolehkan di ekstensiGambarValid
     // in_array = apakah ada sebuah string dalam array
     if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
-        echo "<script>alert('Silakan unggah gambar dengan format png, jpg atau jpeg')</script>";
+        echo "<script>alert('Silakan unggah gambar dengan format png, jpg, webp atau jpeg')</script>";
         return false;
     }
     // cek ukuran gambar
@@ -131,5 +131,60 @@ function update($data)
     mysqli_query($conn, $query);
 
     // jika gagal -1, jika berhasil 1
+    return mysqli_affected_rows($conn);
+}
+
+function cari($keyword)
+{
+    $query = "SELECT * FROM laptop WHERE merk LIKE '%$keyword%' 
+    OR CPU LIKE '%$keyword%' 
+    OR GPU LIKE '%$keyword%'
+    OR RAM LIKE '%$keyword%'
+    OR battery LIKE '%$keyword%'
+    OR harga LIKE '%$keyword%'
+    OR ID LIKE '%$keyword%'
+    ";
+
+    return query($query);
+}
+
+function registrasi($data)
+{
+    global $conn;
+
+    // stripslashes untuk backslash dll biar ga masuk ke database
+    // strtolower agar input jadi huruf kecil karena biasanya username ga case sensitive
+    // htmlspecialchar untuk mastiin user ga input yang aneh2
+    $username = htmlspecialchars(strtolower(stripslashes($data["username"])));
+    // mysqli_real_escape_string memungkinkan user input password dengan tanda kutip
+    $password = mysqli_real_escape_string($conn, $data["password"]);
+    $password2 = mysqli_real_escape_string($conn, $data["password2"]);
+    $email = htmlspecialchars($data["email"]);
+
+    // cek apakah username udah ada
+    $result = mysqli_query($conn, "SELECT username FROM 
+    user WHERE username = '$username'");
+
+    if (mysqli_fetch_assoc($result)) {
+        echo "<script>
+        alert('Username sudah terdaftar.')
+        </script>";
+        return false; // agar insert tidak terjadi
+    }
+
+    if ($password != $password2) {
+        echo "<script>
+        alert('Konfirmasi password tidak sesuai!')
+        </script>";
+        return false;
+    }
+
+    // enkripsi password
+    // PASSWORD DEFAULT dipilih oleh php dan akan terus update jika ada cara yang baru
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
+    // tambahkan userbaru ke database
+    mysqli_query($conn, "INSERT INTO user VALUES ('', '$username', '$password', '$email')");
+
     return mysqli_affected_rows($conn);
 }
