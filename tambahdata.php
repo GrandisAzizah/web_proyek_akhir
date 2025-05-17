@@ -29,7 +29,7 @@ if (isset($_POST["submit"])) {
     <form action="" method="POST" enctype="multipart/form-data">
         <!-- INPUT MEREK -->
         <label for="merk">Merek: <br></label>
-        <input type="text" name="merk" id="merek" required><br><br>
+        <input type="text" name="merk" id="merk" required><br><br>
 
 
         <!-- INPUT GAMBAR -->
@@ -38,18 +38,18 @@ if (isset($_POST["submit"])) {
 
 
         <!-- INPUT CPU -->
-        <label for="cpu">CPU:<br></label>
-        <input type="text" name="cpu" id="cpu"><br><br>
+        <label for="CPU">CPU:<br></label>
+        <input type="text" name="CPU" id="CPU"><br><br>
 
 
         <!-- INPUT GPU -->
-        <label for="gpu">GPU:<br></label>
-        <input type="text" name="gpu" id="gpu"><br><br>
+        <label for="GPU">GPU:<br></label>
+        <input type="text" name="GPU" id="GPU"><br><br>
 
 
         <!-- INPUT RAM -->
-        <label for="ram">RAM:<br></label>
-        <input type="text" name="ram" id="ram"><br><br>
+        <label for="RAM">RAM:<br></label>
+        <input type="text" name="RAM" id="RAM"><br><br>
 
 
         <!-- INPUT BATTERY -->
