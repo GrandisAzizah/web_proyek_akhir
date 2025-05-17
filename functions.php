@@ -56,6 +56,7 @@ function upload()
     // cek apakah ada gambar yang diupload
     if ($error == 4) { // 4: tidak ada file yang diunggah
         echo "<script>alert('Silakan unggah gambar')</script>";
+        return false;
     }
 
     // cek apakah yang diunggah gambar atau bukan agar user hanya unggah gambar
@@ -69,21 +70,23 @@ function upload()
     // cek apakah format yang diunggah termasuk yang diperbolehkan di ekstensiGambarValid
     // in_array = apakah ada sebuah string dalam array
     if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
-        echo "<script>alert('Silakan unggah gambar')</script>";
+        echo "<script>alert('Silakan unggah gambar dengan format png, jpg atau jpeg')</script>";
+        return false;
     }
     // cek ukuran gambar
     if ($ukuranFile > 5000000) {
         echo "<script>alert('Ukuran gambar terlalu besar. Ukuran maksimal adalah 5 MB')</script>";
+        return false;
     }
 
     // generate nama file baru untuk file yang diunggah agar tidak ada duplikasi
     $namaFileBaru = uniqid();
-    $namaFileBaru = '.';
-    $namaFileBaru = $ekstensiGambar;
+    $namaFileBaru .= '.' . $ekstensiGambar;
+
     // masukkan ke direktori
     move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
 
-    return $namaFileBaru;
+    return 'img/' . $namaFileBaru;
 }
 
 function hapus($id)
