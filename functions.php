@@ -188,3 +188,26 @@ function registrasi($data)
 
     return mysqli_affected_rows($conn);
 }
+
+// fungsi untuk menginiliasisasi nilai dari CPU atau GPU dari hasil benchmark secara umum, memungkinkan nilai maana yang dapat diunggulkan jika keduanya dibandingkan.
+function get_cpu_score($cpu) {
+    $benchmarks = [
+        'Intel Core i9 14900HX' => 950,
+        'AMD Ryzen 5 7430U' => 550,
+        'Intel Core i5-12450H' => 600,
+        'Intel Core i3 1315U CPU' => 400,
+        'Apple M2 Chip' => 900
+    ];
+    return $benchmarks[$cpu] ?? 0;
+}
+
+function get_gpu_score($gpu) {
+    $benchmarks = [
+        'NVIDIA GeForce RTX 4060' => 900,
+        'Intel UHD Graphics' => 300,
+        'AMD Radeon™ Graphics' => 450,
+        'Intel UHD 64EU' => 320,
+        'Intel® UHD Graphics 600' => 250
+    ];
+    return $benchmarks[$gpu] ?? 0;
+}
