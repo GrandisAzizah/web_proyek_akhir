@@ -1,6 +1,19 @@
 <?php
+
+session_start();
+// user belum login
+if (!isset($_SESSION["login"])) {
+    header("location: login.php");
+    exit;
+}
+
 require 'functions.php';
 $laptop = query("SELECT * FROM laptop ORDER BY id DESC");
+
+// tombol cari di klik
+if (isset($_POST["cari"])) {
+    $laptop = cari($_POST["keyword"]);
+}
 ?>
 
 <!DOCTYPE html>
@@ -29,11 +42,9 @@ $laptop = query("SELECT * FROM laptop ORDER BY id DESC");
             </button>
 
             <!-- SEARCH BAR -->
-            <form action="" method="GET" class="d-flex" role="search">
-                <input class="form-control me-2" value="<?php if (isset($_GET['search'])) {
-                                                            echo $_GET['search'];
-                                                        } ?>" type="search" name="my_search" placeholder="Cari Produk" />
-                <button class="btn btn-primary" type="submit" name="search">Search</button>
+            <form action="" method="POST" class="d-flex" role="search">
+                <input type="text" name="keyword" size="30" class="form-control me-2" placeholder="Cari Produk" autofocus autocomplete="off" />
+                <button class="btn btn-primary" type="submit" name="cari">Cari</button>
             </form>
 
             <!-- WEB NAME -->
@@ -54,6 +65,9 @@ $laptop = query("SELECT * FROM laptop ORDER BY id DESC");
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Konsultasi</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link" href="logout.php">Log out</a>
                         </li>
                     </ul>
 
