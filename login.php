@@ -3,13 +3,6 @@ session_start();
 
 require 'functions.php';
 
-// cek cookie, kalau ada berarti masih login
-// if (isset($_COOKIE['login'])) {
-//     if ($_COOKIE['login'] == true) {
-//         $_SESSION['login'] = true;
-//     }
-// }
-
 // cek apakah ada cookie
 if (isset($_COOKIE['k']) && isset($_COOKIE['x'])) {
     $a = $_COOKIE['k'];
@@ -55,7 +48,7 @@ if (isset($_POST["login"])) {
                 // cek cookies remember me
                 if (isset($_POST['remember'])) {
                     // buat cookie
-                    // k itu id ish
+                    // k itu id 
                     // x itu username, username akan di enkripsi
                     // enkripsi hash (parameter 1, parameter 2, parameter 3 - opsional)
                     // parameter 1 -> pake algoritma apa
@@ -89,33 +82,60 @@ if (isset($_POST["login"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style_login.css">
     <title>Halaman Login</title>
 </head>
 
 <body>
-    <h1>Halaman Login</h1>
-
     <!-- tampilkan pesan error -->
     <?php if (isset($error)): ?>
         <!-- pesan error -->
         <p>Username atau password salah.</p>
     <?php endif; ?>
 
-    <form action="" method="POST">
-        <label for="username">Username:</label><br>
-        <input type="text" name="username" id="username" required><br>
+    <div class="row no-gutters">
 
-        <label for="email">Email:</label><br>
-        <input type="email" name="email" id="email" required><br>
+        <!-- bagian kiri -->
+        <div class="col-md-6 no-gutters">
+            <div class="leftside d-flex justify-content-center align-items-center"></div>
+        </div>
 
-        <label for="password">Password:</label><br>
-        <input type="password" name="password" id="password" required><br><br>
-
-        <input type="checkbox" name="remember" id="remember">
-        <label for="remember">Ingat Pengguna</label><br><br>
-
-        <button type="submit" name="login">Login</button>
-    </form>
+        <!-- bagian kanan -->
+        <div class="col-md-6 no-gutters">
+            <div class="rightside d-flex justify-content-center align-items-center">
+                <!-- form -->
+                <form action="" method="POST">
+                    <div>
+                        <h1>Login</h1>
+                    </div>
+                    <div class="form-group">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" name="username" id="username" class="form-control" minlength="8" maxlength="20">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="example@gmail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" name="password" id="password" class="form-control" minlength="8" maxlength="12" required>
+                        <p><a href="forgot_pw.php">Lupa password?</a></p>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" name="remember" id="remember">
+                        <label for="remember">Ingat Pengguna</label>
+                        <p>Belum punya akun? <a href="registrasi.php">Registrasi di sini</a></p>
+                    </div>
+                    <div>
+                        <button type="submit" name="login" class="btn btn-primary">Login</button>
+                    </div>
+            </div>
+        </div>
+        </form>
+    </div>
 </body>
 
 </html>
