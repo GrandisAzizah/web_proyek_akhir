@@ -1,0 +1,35 @@
+table {
+max-width: 1000px;
+}
+
+.delete-icon {
+color: red;
+}
+
+.update-icon {
+color: black;
+}
+
+button:hover{
+    background-color: #4e1aa9 !important;
+    border-color: #4e1aa9 !important;
+}
+
+button{
+    background-color:#672fc9 !important;
+}
+
+button[type="submit"] {
+    color: whitesmoke;
+    width: 40%;
+    border: none !important;
+}
+
+button[type="button"] {
+    border: none !important;
+}
+
+.nav-link {
+    color: whitesmoke !important;
+    font-weight: bold;
+}
