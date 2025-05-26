@@ -1,10 +1,6 @@
 <?php
 include "functions.php";
-//koneksi ke database dan mengambil data dari tabel laptop untuk ditampilkan
-// $koneksi = mysqli_connect("localhost", "root", "", "paweb");
-// if (!$koneksi) {
-//   die("Koneksi gagal: " . mysqli_connect_error());
-// }
+
 $query = "SELECT * FROM laptop LIMIT 5";
 $result = mysqli_query($conn, $query);
 
@@ -35,7 +31,7 @@ $result = mysqli_query($conn, $query);
     }
 
     .nav-tengah {
-      background-color: white;
+      
       border-radius: 12px;
       padding: 5px 10px;
       display: flex;
@@ -44,10 +40,19 @@ $result = mysqli_query($conn, $query);
     }
 
     .nav-tengah .nav-link {
-      color: black !important;
+      color: white !important;
       padding: 5px 10px;
       border-radius: 8px;
       transition: 0.3s;
+      border: 1px solid #ccc;
+    }
+
+    .nav-brand {
+
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: white !important;
+      
     }
 
     .nav-tengah .nav-link:hover {
@@ -67,6 +72,11 @@ $result = mysqli_query($conn, $query);
     .main-heading {
       margin-top: 60px;
     }
+    .form-control:focus,
+    .form-control:hover {
+    border-color: #692B9C;
+    box-shadow: 0 0 0 0.25rem rgba(160, 67, 231, 0.25);
+    }
   </style>
 </head>
 
@@ -74,23 +84,23 @@ $result = mysqli_query($conn, $query);
   <!-- navbar -->
   <nav class="navbar navbar-expand-lg" style="background: linear-gradient(90deg, #46176E 0%, #692B9C 50%, #A043E7 100%);">
     <div class="container">
-      <a class="navbar-brand text-white" href="#">COMPARE</a>
+      <a class="nav-brand" href="landingpage.php">COMPARE</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
         <!-- Menu navbar bagian tengah dengan background -->
         <div class="nav-tengah">
-          <a class="nav-link active" aria-current="page" href="#">Active</a>
-          <a class="nav-link" href="#">Link</a>
-          <a class="nav-link" href="#">Link</a>
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          
+          <a class="nav-link" href="request.php">Request</a>
+          <a class="nav-link" href="produk.php">Produk</a>
+          <a class="nav-link" href="#">Konsultasi</a>
         </div>
       </div>
       <!-- Icon dan link login -->
       <div class="d-flex align-items-center">
         <i class="bi bi-person-circle text-white me-2"></i>
-        <a class="nav-link text-white" href="#">Login</a>
+        <a class="nav-link text-white" style="font-weight: bold;" href="login.php">Login</a>
       </div>
     </div>
   </nav>
@@ -102,8 +112,8 @@ $result = mysqli_query($conn, $query);
       <p>Tempat membandingkan peforma laptop dari segala aspek </p>
 
       <form method="get" class="d-flex search-bar mt-3" role="search" action="halperbandingan.php">
-        <input class="form-control me-2" type="text" name="laptop1" placeholder="Contoh: ROG Strix"><br><br>
-        <input class="form-control me-2" type="text" name="laptop2" placeholder="Contoh: Axioo Hype"><br><br>
+        <input class="form-control me-2" type="text" name="laptop1" placeholder=" Klik untuk bandingkan"><br><br>
+        <input class="form-control me-2" type="text" name="laptop2" placeholder=" Isi disini juga"><br><br>
         <div class="mt-3">
           <button class="btn btn-outline-success compare-btn" type="submit" >Bandingkan</button>
         </div>
