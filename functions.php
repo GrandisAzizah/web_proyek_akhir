@@ -189,6 +189,54 @@ function registrasi($data)
     return mysqli_affected_rows($conn);
 }
 
+function request($req)
+{
+    global $conn;
+    $username = htmlspecialchars($req["username"]);
+    $request_data = htmlspecialchars($req["request_data"]);
+
+    $result = mysqli_query($conn, "SELECT username FROM 
+    user WHERE username = '$username'");
+
+    // cek username ada di database apa enggak
+    if (!mysqli_fetch_assoc($result)) {
+        return false; // agar insert tidak terjadi
+    }
+
+    $query = "INSERT INTO request (username, request_data) VALUES ('$username', '$request_data')";
+
+    if (!mysqli_query($conn, $query)) {
+        die("Query error: " . mysqli_error($conn));
+    }
+
+    // jika gagal -1, jika berhasil 1
+    return mysqli_affected_rows($conn);
+}
+
+function hapus_req($id_req)
+{
+    global $conn;
+    mysqli_query($conn, "DELETE FROM request WHERE id_req = $id_req");
+    return mysqli_affected_rows($conn);
+}
+
+function ganti_pw($data)
+{
+    global $conn;
+
+    $email = htmlspecialchars($data['email']);
+    $passwordNew = password_hash($data['passwordNew'], PASSWORD_DEFAULT);
+
+    $query = "UPDATE user SET password = ? WHERE email = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "ss", $passwordNew, $email);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    
+    // jika gagal -1, jika berhasil 1
+    return mysqli_stmt_affected_rows($stmt);
+}
+
 // fungsi untuk menginiliasisasi nilai dari CPU atau GPU dari hasil benchmark secara umum, memungkinkan nilai maana yang dapat diunggulkan jika keduanya dibandingkan.
 function get_cpu_score($cpu) {
     $benchmarks = [
